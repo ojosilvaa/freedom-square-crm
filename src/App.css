@@ -165,6 +165,24 @@ a { color: inherit; }
   font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
 }
 .leads-table thead th:first-child { border-radius: 12px 0 0 0; }
+/* ===== VIEW TABS ===== */
+.view-tabs {
+  display: flex; gap: 6px; margin-bottom: 14px;
+}
+.view-tab {
+  display: flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  border: 1.5px solid #D1D5DB; background: #fff; color: #6B7280;
+  transition: all 0.15s; cursor: pointer;
+}
+.view-tab:hover { border-color: #2E75B6; color: #2E75B6; }
+.view-tab.active { background: #1F3864; border-color: #1F3864; color: #fff; }
+.tab-count {
+  font-size: 11px; font-weight: 700;
+  background: rgba(255,255,255,0.2); padding: 1px 6px; border-radius: 10px;
+}
+.view-tab:not(.active) .tab-count { background: #F3F4F6; color: #374151; }
+
 .leads-table thead th:last-child { border-radius: 0 12px 0 0; }
 .leads-table tbody tr:last-child td:first-child { border-radius: 0 0 0 12px; }
 .leads-table tbody tr:last-child td:last-child { border-radius: 0 0 12px 0; }

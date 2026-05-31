@@ -3,22 +3,33 @@ import { useLang } from '../App'
 import { STATUS_COLORS, STATUSES, NICHES } from '../i18n'
 import LeadModal from '../components/LeadModal'
 
+const PARTNER_NICHE = 'Design Partner'
+
 export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
   const { t } = useLang()
+  const [viewType, setViewType] = useState('clients') // 'clients' | 'partners' | 'all'
   const [search, setSearch] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
   const [filterNiche, setFilterNiche] = useState('')
   const [modalOpen, setModalOpen] = useState(false)
   const [editingLead, setEditingLead] = useState(null)
-  const [editingCell, setEditingCell] = useState(null) // { id, field }
+  const [editingCell, setEditingCell] = useState(null)
 
   const filtered = leads.filter(l => {
     const q = search.toLowerCase()
     const matchSearch = !q || [l.company, l.niche, l.hook, l.notes, l.instagram].some(f => f?.toLowerCase().includes(q))
     const matchStatus = !filterStatus || l.status === filterStatus
     const matchNiche = !filterNiche || l.niche === filterNiche
-    return matchSearch && matchStatus && matchNiche
+    const matchView = viewType === 'all'
+      ? true
+      : viewType === 'partners'
+        ? l.niche === PARTNER_NICHE
+        : l.niche !== PARTNER_NICHE
+    return matchSearch && matchStatus && matchNiche && matchView
   })
+
+  const clientCount = leads.filter(l => l.niche !== PARTNER_NICHE).length
+  const partnerCount = leads.filter(l => l.niche === PARTNER_NICHE).length
 
   function openAdd() {
     setEditingLead(null)
@@ -57,6 +68,18 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
         <button className="btn-primary" onClick={openAdd}>+ {t.add_lead}</button>
       </div>
 
+      <div className="view-tabs">
+        <button className={`view-tab ${viewType === 'clients' ? 'active' : ''}`} onClick={() => { setViewType('clients'); setFilterNiche('') }}>
+          🎯 {t.tab_clients} <span className="tab-count">{clientCount}</span>
+        </button>
+        <button className={`view-tab ${viewType === 'partners' ? 'active' : ''}`} onClick={() => { setViewType('partners'); setFilterNiche('') }}>
+          🤝 {t.tab_partners} <span className="tab-count">{partnerCount}</span>
+        </button>
+        <button className={`view-tab ${viewType === 'all' ? 'active' : ''}`} onClick={() => setViewType('all')}>
+          {t.tab_all}
+        </button>
+      </div>
+
       <div className="filters-row">
         <input
           className="search-input"
@@ -68,10 +91,12 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
           <option value="">{t.filter_status}</option>
           {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
-        <select className="filter-select" value={filterNiche} onChange={e => setFilterNiche(e.target.value)}>
-          <option value="">{t.filter_niche}</option>
-          {NICHES.map(n => <option key={n} value={n}>{n}</option>)}
-        </select>
+        {viewType !== 'partners' && (
+          <select className="filter-select" value={filterNiche} onChange={e => setFilterNiche(e.target.value)}>
+            <option value="">{t.filter_niche}</option>
+            {NICHES.filter(n => n !== PARTNER_NICHE).map(n => <option key={n} value={n}>{n}</option>)}
+          </select>
+        )}
       </div>
 
       <div className="table-wrap">

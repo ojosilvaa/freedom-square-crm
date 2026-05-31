@@ -19,6 +19,9 @@ export const translations = {
     // Leads table
     add_lead: 'Add Lead',
     search_placeholder: 'Search company, niche, hook…',
+    tab_clients: 'Clients',
+    tab_partners: 'Partners',
+    tab_all: 'All',
     filter_status: 'All Statuses',
     filter_niche: 'All Niches',
     col_company: 'Company',
@@ -107,6 +110,9 @@ export const translations = {
     // Leads table
     add_lead: 'Adicionar Lead',
     search_placeholder: 'Pesquisar empresa, nicho, gancho…',
+    tab_clients: 'Clientes',
+    tab_partners: 'Parceiros',
+    tab_all: 'Todos',
     filter_status: 'Todos os Status',
     filter_niche: 'Todos os Nichos',
     col_company: 'Empresa',
@@ -189,4 +195,4 @@ export const STATUS_COLORS = {
 
 export const STATUSES = Object.keys(STATUS_COLORS)
 
-export const NICHES = ['Dental', 'Aesthetic', 'Hotel / Accommodation', 'Pilates / Fitness', 'Restaurant', 'Design Partner', 'Other']
+export const NICHES = ['Dental', 'Aesthetic', 'Hotel / Accommodation', 'Pilates / Fitness', 'Restaurant', 'Tech / SaaS', 'Design Partner', 'Other']
