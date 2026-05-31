@@ -1,4 +1,4 @@
-export const translations = {
+﻿export const translations = {
   en: {
     // Nav
     nav_dashboard: 'Dashboard',
@@ -18,7 +18,7 @@ export const translations = {
 
     // Leads table
     add_lead: 'Add Lead',
-    search_placeholder: 'Search company, niche, hook…',
+    search_placeholder: 'Search company, niche, hookâ€¦',
     tab_clients: 'Clients',
     tab_partners: 'Partners',
     tab_all: 'All',
@@ -83,102 +83,102 @@ export const translations = {
     // General
     open_profile: 'Open Profile',
     edit: 'Edit',
-    loading: 'Loading…',
-    saving: 'Saving…',
+    loading: 'Loadingâ€¦',
+    saving: 'Savingâ€¦',
     overdue: 'Overdue',
     today: 'Today',
     tomorrow: 'Tomorrow',
   },
 
-  es: {
+  pt: {
     // Nav
     nav_dashboard: 'Dashboard',
     nav_leads: 'Leads',
-    nav_templates: 'Plantillas',
+    nav_templates: 'Templates',
     agency_tagline: 'CRM de Leads',
 
     // Dashboard
     total_leads: 'Total de Leads',
-    response_rate: 'Tasa de Respuesta',
-    close_rate: 'Tasa de Cierre',
-    meetings_booked: 'Reuniones Agendadas',
-    sales_funnel: 'Embudo de Ventas',
+    response_rate: 'Taxa de Resposta',
+    close_rate: 'Taxa de Fecho',
+    meetings_booked: 'Reuniões Marcadas',
+    sales_funnel: 'Funil de Vendas',
     by_niche: 'Leads por Nicho',
-    recent_activity: 'Requiere Seguimiento',
-    no_followups: 'Sin seguimientos próximos',
+    recent_activity: 'Requer Follow-up',
+    no_followups: 'Sin seguimientos prÃ³ximos',
 
     // Leads table
-    add_lead: 'Añadir Lead',
-    search_placeholder: 'Buscar empresa, nicho, gancho…',
+    add_lead: 'AÃ±adir Lead',
+    search_placeholder: 'Buscar empresa, nicho, ganchoâ€¦',
     tab_clients: 'Clientes',
-    tab_partners: 'Socios',
+    tab_partners: 'Parceiros',
     tab_all: 'Todos',
-    filter_status: 'Todos los Estados',
-    filter_niche: 'Todos los Nichos',
+    filter_status: 'Todos os Status',
+    filter_niche: 'Todos os Nichos',
     col_company: 'Empresa',
     col_niche: 'Nicho',
-    col_source: 'Fuente',
+    col_source: 'Fonte',
     col_instagram: 'Instagram / Perfil',
     col_whatsapp: 'WhatsApp',
     col_hook: 'Gancho',
-    col_status: 'Estado',
-    col_last_contact: 'Último Contacto',
-    col_next_followup: 'Próximo Seguimiento',
+    col_status: 'Status',
+    col_last_contact: 'Ãšltimo Contacto',
+    col_next_followup: 'PrÃ³ximo Seguimiento',
     col_notes: 'Notas',
     col_actions: '',
-    no_leads: 'No se encontraron leads.',
-    delete_confirm: '¿Eliminar este lead?',
+    no_leads: 'Nenhum lead encontrado.',
+    delete_confirm: 'Â¿Eliminar este lead?',
 
     // Add Lead modal
-    modal_title_add: 'Añadir Nuevo Lead',
+    modal_title_add: 'AÃ±adir Nuevo Lead',
     modal_title_edit: 'Editar Lead',
-    field_company: 'Nombre de la Empresa',
+    field_company: 'Nome da Empresa',
     field_niche: 'Nicho',
-    field_source: 'Dónde Encontré',
+    field_source: 'DÃ³nde EncontrÃ©',
     field_instagram: 'Instagram / URL del Perfil',
-    field_whatsapp: 'Número de WhatsApp',
-    field_hook: 'Gancho de Aproximación',
-    field_status: 'Estado',
-    field_last_contact: 'Último Contacto',
-    field_next_followup: 'Próximo Seguimiento',
+    field_whatsapp: 'NÃºmero de WhatsApp',
+    field_hook: 'Gancho de AproximaciÃ³n',
+    field_status: 'Status',
+    field_last_contact: 'Ãšltimo Contacto',
+    field_next_followup: 'PrÃ³ximo Seguimiento',
     field_notes: 'Notas',
     btn_save: 'Guardar',
     btn_cancel: 'Cancelar',
-    btn_delete: 'Eliminar',
-    required: 'requerido',
+    btn_delete: 'Apagar',
+    required: 'obrigatório',
 
     // Niches
     niche_dental: 'Dental',
-    niche_aesthetic: 'Estética',
+    niche_aesthetic: 'EstÃ©tica',
     niche_hotel: 'Hotel / Alojamiento',
     niche_pilates: 'Pilates / Fitness',
     niche_restaurant: 'Restaurante',
     niche_other: 'Otro',
 
     // Status labels
-    status_to_contact: 'Por Contactar',
+    status_to_contact: 'A Contactar',
     status_contacted: 'Contactado',
-    status_replied: 'Respondió',
-    status_meeting: 'Reunión Agendada',
-    status_proposal: 'Propuesta Enviada',
-    status_closed: 'Cerrado',
+    status_replied: 'RespondiÃ³',
+    status_meeting: 'ReuniÃ³n Agendada',
+    status_proposal: 'Proposta Enviada',
+    status_closed: 'Fechado',
     status_lost: 'Perdido',
-    status_no_reply: 'Sin Respuesta',
+    status_no_reply: 'Sem Resposta',
 
     // Templates page
-    templates_title: 'Plantillas de Mensajes',
-    templates_subtitle: 'Plantillas listas para DM y WhatsApp. Haz clic para copiar.',
-    copied: '¡Copiado!',
+    templates_title: 'Templates de Mensagens',
+    templates_subtitle: 'Templates prontos para DM e WhatsApp. Clica para copiar.',
+    copied: 'Â¡Copiado!',
     copy: 'Copiar',
 
     // General
     open_profile: 'Abrir Perfil',
     edit: 'Editar',
-    loading: 'Cargando…',
-    saving: 'Guardando…',
-    overdue: 'Vencido',
-    today: 'Hoy',
-    tomorrow: 'Mañana',
+    loading: 'Cargandoâ€¦',
+    saving: 'Guardandoâ€¦',
+    overdue: 'Atrasado',
+    today: 'Hoje',
+    tomorrow: 'MaÃ±ana',
   },
 }
 
@@ -196,3 +196,4 @@ export const STATUS_COLORS = {
 export const STATUSES = Object.keys(STATUS_COLORS)
 
 export const NICHES = ['Dental', 'Aesthetic', 'Hotel / Accommodation', 'Pilates / Fitness', 'Restaurant', 'Tech / SaaS', 'Design Partner', 'Other']
+
