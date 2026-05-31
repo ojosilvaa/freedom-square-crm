@@ -189,4 +189,4 @@ export const STATUS_COLORS = {
 
 export const STATUSES = Object.keys(STATUS_COLORS)
 
-export const NICHES = ['Dental', 'Aesthetic', 'Hotel / Accommodation', 'Pilates / Fitness', 'Restaurant', 'Other']
+export const NICHES = ['Dental', 'Aesthetic', 'Hotel / Accommodation', 'Pilates / Fitness', 'Restaurant', 'Design Partner', 'Other']
