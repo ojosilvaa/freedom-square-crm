@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '../App'
-import { STATUS_COLORS, STATUSES, NICHES } from '../i18n'
+import { STATUS_COLORS, STATUSES, NICHES, NICHE_COLORS, PARTNER_NICHES } from '../i18n'
 import LeadModal from '../components/LeadModal'
 
-const PARTNER_NICHE = 'Design Partner'
+const isPartner = (niche) => PARTNER_NICHES.includes(niche)
 
 export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
   const { t } = useLang()
@@ -23,13 +23,13 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
     const matchView = viewType === 'all'
       ? true
       : viewType === 'partners'
-        ? l.niche === PARTNER_NICHE
-        : l.niche !== PARTNER_NICHE
+        ? isPartner(l.niche)
+        : !isPartner(l.niche)
     return matchSearch && matchStatus && matchNiche && matchView
   })
 
-  const clientCount = leads.filter(l => l.niche !== PARTNER_NICHE).length
-  const partnerCount = leads.filter(l => l.niche === PARTNER_NICHE).length
+  const clientCount = leads.filter(l => !isPartner(l.niche)).length
+  const partnerCount = leads.filter(l => isPartner(l.niche)).length
 
   function openAdd() {
     setEditingLead(null)
@@ -94,7 +94,7 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
         {viewType !== 'partners' && (
           <select className="filter-select" value={filterNiche} onChange={e => setFilterNiche(e.target.value)}>
             <option value="">{t.filter_niche}</option>
-            {NICHES.filter(n => n !== PARTNER_NICHE).map(n => <option key={n} value={n}>{n}</option>)}
+            {NICHES.filter(n => viewType === 'all' || !isPartner(n)).map(n => <option key={n} value={n}>{n}</option>)}
           </select>
         )}
       </div>
@@ -222,6 +222,32 @@ function EditableStatus({ leadId, status, isEditing, setEditingCell, onInlineEdi
   )
 }
 
+function EditableNiche({ leadId, niche, isEditing, setEditingCell, onInlineEdit }) {
+  if (isEditing) {
+    return (
+      <select
+        autoFocus
+        defaultValue={niche}
+        className="inline-input"
+        onChange={e => onInlineEdit(leadId, 'niche', e.target.value)}
+        onBlur={() => setEditingCell(null)}
+      >
+        {NICHES.map(n => <option key={n} value={n}>{n}</option>)}
+      </select>
+    )
+  }
+  const colors = NICHE_COLORS[niche] || NICHE_COLORS['Other']
+  return (
+    <span
+      className="niche-pill"
+      style={{ background: colors.bg, color: colors.text, border: `1px solid ${colors.border}`, cursor: 'pointer' }}
+      onClick={() => setEditingCell({ id: leadId, field: 'niche' })}
+    >
+      {niche || '—'}
+    </span>
+  )
+}
+
 function LeadRow({ lead, t, editingCell, setEditingCell, onInlineEdit, onEdit, onDelete }) {
   const isEditing = (field) => editingCell?.id === lead.id && editingCell?.field === field
 
@@ -236,7 +262,7 @@ function LeadRow({ lead, t, editingCell, setEditingCell, onInlineEdit, onEdit, o
         <div className="td-source">{lead.source}</div>
       </td>
       <td>
-        <EditableText leadId={lead.id} field="niche" value={lead.niche} isEditing={isEditing('niche')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
+        <EditableNiche leadId={lead.id} niche={lead.niche} isEditing={isEditing('niche')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
       </td>
       <td>
         {lead.instagram ? (

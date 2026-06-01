@@ -103,8 +103,8 @@ a { color: inherit; }
 
 /* ===== DASHBOARD ===== */
 .kpi-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 16px; margin-bottom: 24px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 14px; margin-bottom: 22px;
 }
 
 .kpi-card {
@@ -114,7 +114,7 @@ a { color: inherit; }
 .kpi-value { font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
 .kpi-label { font-size: 12px; color: #6B7280; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
 
-.dashboard-bottom { display: grid; grid-template-columns: 1fr 360px; gap: 16px; }
+.dashboard-bottom { display: grid; grid-template-columns: 1fr 360px; gap: 16px; margin-bottom: 16px; }
 .funnel-card {}
 .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
 .card-title { font-size: 14px; font-weight: 700; color: #1F3864; margin-bottom: 16px; }
@@ -131,6 +131,15 @@ a { color: inherit; }
 .niche-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
 .niche-name { color: #374151; }
 .niche-count { font-weight: 700; color: #1F3864; background: #E8EDF5; padding: 1px 8px; border-radius: 12px; }
+
+/* By-niche grid */
+.niche-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(178px, 1fr)); gap: 12px; }
+.niche-chip { background: #F9FAFB; border-radius: 10px; padding: 10px 12px; }
+.niche-chip-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; gap: 8px; }
+.niche-chip-name { font-size: 12px; font-weight: 600; color: #374151; line-height: 1.25; }
+.niche-chip-count { font-size: 17px; font-weight: 800; line-height: 1; }
+.niche-chip-bar-wrap { background: #EDF0F4; border-radius: 4px; height: 6px; overflow: hidden; }
+.niche-chip-bar { height: 100%; border-radius: 4px; transition: width 0.4s ease; min-width: 4px; }
 
 .followup-list { display: flex; flex-direction: column; gap: 10px; }
 .followup-row { display: flex; justify-content: space-between; align-items: center; padding: 8px; background: #F9FAFB; border-radius: 8px; font-size: 12px; }
@@ -211,6 +220,12 @@ textarea.inline-input { resize: vertical; min-height: 50px; }
 .status-pill {
   display: inline-flex; align-items: center;
   padding: 3px 8px; border-radius: 12px;
+  font-size: 11px; font-weight: 600; white-space: nowrap;
+}
+
+.niche-pill {
+  display: inline-flex; align-items: center;
+  padding: 3px 9px; border-radius: 12px;
   font-size: 11px; font-weight: 600; white-space: nowrap;
 }
 
