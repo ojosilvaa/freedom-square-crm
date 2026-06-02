@@ -5,6 +5,7 @@ export default function Dashboard({ leads }) {
   const { t } = useLang()
 
   const total = leads.length
+  const hot = leads.filter(l => l.priority === 'A').length
   const toContact = leads.filter(l => l.status === 'To Contact').length
   const withIg = leads.filter(l => l.instagram && l.instagram.trim()).length
   const withIgPct = total ? Math.round((withIg / total) * 100) : 0
@@ -54,6 +55,7 @@ export default function Dashboard({ leads }) {
       {/* KPI cards */}
       <div className="kpi-grid">
         <KpiCard label={t.total_leads} value={total} color="#1F3864" />
+        <KpiCard label={t.hot_leads} value={hot} color="#DC2626" />
         <KpiCard label={t.to_contact_kpi} value={toContact} color="#2E75B6" />
         <KpiCard label={t.with_ig_kpi} value={`${withIgPct}%`} color="#E1306C" />
         <KpiCard label={t.meetings_booked} value={meetings} color="#7C3AED" />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useLang } from '../App'
-import { STATUSES, NICHES } from '../i18n'
+import { STATUSES, NICHES, PRIORITIES, PRIORITY_LABELS } from '../i18n'
 
 export default function LeadModal({ lead, onSave, onDelete, onClose }) {
   const { t } = useLang()
@@ -8,6 +8,7 @@ export default function LeadModal({ lead, onSave, onDelete, onClose }) {
   const [form, setForm] = useState({
     company: lead?.company || '',
     niche: lead?.niche || 'Dental',
+    priority: lead?.priority || '',
     source: lead?.source || '',
     instagram: lead?.instagram || '',
     whatsapp: lead?.whatsapp || '',
@@ -28,6 +29,7 @@ export default function LeadModal({ lead, onSave, onDelete, onClose }) {
     setSaving(true)
     const payload = {
       ...form,
+      priority: form.priority || null,
       last_contact: form.last_contact || null,
       next_followup: form.next_followup || null,
     }
@@ -60,6 +62,14 @@ export default function LeadModal({ lead, onSave, onDelete, onClose }) {
               <label>{t.field_niche}</label>
               <select value={form.niche} onChange={e => set('niche', e.target.value)}>
                 {NICHES.map(n => <option key={n} value={n}>{n}</option>)}
+              </select>
+            </div>
+
+            <div className="form-field">
+              <label>{t.field_priority}</label>
+              <select value={form.priority} onChange={e => set('priority', e.target.value)}>
+                <option value="">—</option>
+                {PRIORITIES.map(p => <option key={p} value={p}>{PRIORITY_LABELS[p]}</option>)}
               </select>
             </div>
 

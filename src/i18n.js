@@ -8,6 +8,7 @@ export const translations = {
 
     // Dashboard
     total_leads: 'Total Leads',
+    hot_leads: 'Hot Leads (A)',
     to_contact_kpi: 'Ready to Contact',
     with_ig_kpi: 'With Instagram',
     response_rate: 'Response Rate',
@@ -26,8 +27,10 @@ export const translations = {
     tab_all: 'All',
     filter_status: 'All Statuses',
     filter_niche: 'All Niches',
+    filter_priority: 'All Priorities',
     col_company: 'Company',
     col_niche: 'Niche',
+    col_priority: 'Priority',
     col_source: 'Source',
     col_instagram: 'Instagram / Profile',
     col_whatsapp: 'WhatsApp',
@@ -45,6 +48,7 @@ export const translations = {
     modal_title_edit: 'Edit Lead',
     field_company: 'Company Name',
     field_niche: 'Niche',
+    field_priority: 'Priority',
     field_source: 'Where Found',
     field_instagram: 'Instagram / Profile URL',
     field_whatsapp: 'WhatsApp Number',
@@ -83,6 +87,7 @@ export const translations = {
 
     // Dashboard
     total_leads: 'Total de Leads',
+    hot_leads: 'Leads Quentes (A)',
     to_contact_kpi: 'Prontos a Contactar',
     with_ig_kpi: 'Com Instagram',
     response_rate: 'Taxa de Resposta',
@@ -101,8 +106,10 @@ export const translations = {
     tab_all: 'Todos',
     filter_status: 'Todos os Estados',
     filter_niche: 'Todos os Nichos',
+    filter_priority: 'Todas as Prioridades',
     col_company: 'Empresa',
     col_niche: 'Nicho',
+    col_priority: 'Prioridade',
     col_source: 'Fonte',
     col_instagram: 'Instagram / Perfil',
     col_whatsapp: 'WhatsApp',
@@ -120,6 +127,7 @@ export const translations = {
     modal_title_edit: 'Editar Lead',
     field_company: 'Nome da Empresa',
     field_niche: 'Nicho',
+    field_priority: 'Prioridade',
     field_source: 'Onde Encontrei',
     field_instagram: 'Instagram / URL do Perfil',
     field_whatsapp: 'Número de WhatsApp',
@@ -167,6 +175,7 @@ export const STATUSES = Object.keys(STATUS_COLORS)
 export const NICHE_COLORS = {
   'Dental':                { bg: '#CCFBF1', text: '#0F766E', border: '#14B8A6' },
   'Aesthetic':             { bg: '#FCE7F3', text: '#9D174D', border: '#EC4899' },
+  'Health / Medical':      { bg: '#FEE2E2', text: '#B91C1C', border: '#EF4444' },
   'Beauty & Wellness':     { bg: '#FAE8FF', text: '#86198F', border: '#D946EF' },
   'Pilates / Fitness':     { bg: '#DCFCE7', text: '#15803D', border: '#22C55E' },
   'Hotel / Accommodation': { bg: '#DBEAFE', text: '#1D4ED8', border: '#3B82F6' },
@@ -186,3 +195,14 @@ export const NICHES = Object.keys(NICHE_COLORS)
 
 // Niches that represent partners (referral / white-label), not direct clients.
 export const PARTNER_NICHES = ['Design Partner', 'Professional Services']
+
+// Outreach priority
+export const PRIORITY_COLORS = {
+  'A': { bg: '#FEE2E2', text: '#B91C1C', border: '#DC2626' },
+  'B': { bg: '#FEF3C7', text: '#92400E', border: '#F59E0B' },
+  'C': { bg: '#F1F5F9', text: '#64748B', border: '#94A3B8' },
+}
+
+export const PRIORITIES = Object.keys(PRIORITY_COLORS)
+
+export const PRIORITY_LABELS = { A: 'A · Hot', B: 'B · Medium', C: 'C · Low' }

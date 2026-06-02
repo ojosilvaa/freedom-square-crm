@@ -229,6 +229,13 @@ textarea.inline-input { resize: vertical; min-height: 50px; }
   font-size: 11px; font-weight: 600; white-space: nowrap;
 }
 
+.priority-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 24px; padding: 2px 7px; border-radius: 8px;
+  font-size: 11px; font-weight: 800; white-space: nowrap;
+}
+.th-priority, .td-priority { text-align: center; width: 60px; }
+
 .instagram-cell { display: flex; align-items: center; gap: 5px; }
 .ig-link { color: #E1306C; flex-shrink: 0; display: flex; align-items: center; }
 .ig-link:hover { opacity: 0.7; }

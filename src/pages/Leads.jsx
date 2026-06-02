@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useLang } from '../App'
-import { STATUS_COLORS, STATUSES, NICHES, NICHE_COLORS, PARTNER_NICHES } from '../i18n'
+import { STATUS_COLORS, STATUSES, NICHES, NICHE_COLORS, PARTNER_NICHES, PRIORITY_COLORS, PRIORITIES, PRIORITY_LABELS } from '../i18n'
 import LeadModal from '../components/LeadModal'
 
 const isPartner = (niche) => PARTNER_NICHES.includes(niche)
+const PRIORITY_RANK = { A: 0, B: 1, C: 2 }
+const priorityRank = (p) => (p in PRIORITY_RANK ? PRIORITY_RANK[p] : 3)
 
 export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
   const { t } = useLang()
@@ -11,6 +13,7 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
   const [search, setSearch] = useState('')
   const [filterStatus, setFilterStatus] = useState('')
   const [filterNiche, setFilterNiche] = useState('')
+  const [filterPriority, setFilterPriority] = useState('')
   const [modalOpen, setModalOpen] = useState(false)
   const [editingLead, setEditingLead] = useState(null)
   const [editingCell, setEditingCell] = useState(null)
@@ -20,13 +23,14 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
     const matchSearch = !q || [l.company, l.niche, l.hook, l.notes, l.instagram].some(f => f?.toLowerCase().includes(q))
     const matchStatus = !filterStatus || l.status === filterStatus
     const matchNiche = !filterNiche || l.niche === filterNiche
+    const matchPriority = !filterPriority || l.priority === filterPriority
     const matchView = viewType === 'all'
       ? true
       : viewType === 'partners'
         ? isPartner(l.niche)
         : !isPartner(l.niche)
-    return matchSearch && matchStatus && matchNiche && matchView
-  })
+    return matchSearch && matchStatus && matchNiche && matchPriority && matchView
+  }).sort((a, b) => priorityRank(a.priority) - priorityRank(b.priority))
 
   const clientCount = leads.filter(l => !isPartner(l.niche)).length
   const partnerCount = leads.filter(l => isPartner(l.niche)).length
@@ -97,6 +101,10 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
             {NICHES.filter(n => viewType === 'all' || !isPartner(n)).map(n => <option key={n} value={n}>{n}</option>)}
           </select>
         )}
+        <select className="filter-select" value={filterPriority} onChange={e => setFilterPriority(e.target.value)}>
+          <option value="">{t.filter_priority}</option>
+          {PRIORITIES.map(p => <option key={p} value={p}>{PRIORITY_LABELS[p]}</option>)}
+        </select>
       </div>
 
       <div className="table-wrap">
@@ -104,6 +112,7 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
           <thead>
             <tr>
               <th>{t.col_company}</th>
+              <th className="th-priority">{t.col_priority}</th>
               <th>{t.col_niche}</th>
               <th>{t.col_instagram}</th>
               <th>{t.col_status}</th>
@@ -116,7 +125,7 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
           </thead>
           <tbody>
             {filtered.length === 0 ? (
-              <tr><td colSpan={9} style={{ textAlign: 'center', padding: '2rem', color: '#9CA3AF' }}>{t.no_leads}</td></tr>
+              <tr><td colSpan={10} style={{ textAlign: 'center', padding: '2rem', color: '#9CA3AF' }}>{t.no_leads}</td></tr>
             ) : filtered.map(lead => (
               <LeadRow
                 key={lead.id}
@@ -222,6 +231,36 @@ function EditableStatus({ leadId, status, isEditing, setEditingCell, onInlineEdi
   )
 }
 
+function EditablePriority({ leadId, priority, isEditing, setEditingCell, onInlineEdit }) {
+  if (isEditing) {
+    return (
+      <select
+        autoFocus
+        defaultValue={priority || ''}
+        className="inline-input"
+        onChange={e => onInlineEdit(leadId, 'priority', e.target.value || null)}
+        onBlur={() => setEditingCell(null)}
+      >
+        <option value="">—</option>
+        {PRIORITIES.map(p => <option key={p} value={p}>{PRIORITY_LABELS[p]}</option>)}
+      </select>
+    )
+  }
+  const colors = priority && PRIORITY_COLORS[priority]
+  return (
+    <span
+      className="priority-pill"
+      style={colors
+        ? { background: colors.bg, color: colors.text, border: `1px solid ${colors.border}`, cursor: 'pointer' }
+        : { color: '#D1D5DB', cursor: 'pointer' }}
+      onClick={() => setEditingCell({ id: leadId, field: 'priority' })}
+      title={priority ? PRIORITY_LABELS[priority] : 'Set priority'}
+    >
+      {priority || '—'}
+    </span>
+  )
+}
+
 function EditableNiche({ leadId, niche, isEditing, setEditingCell, onInlineEdit }) {
   if (isEditing) {
     return (
@@ -260,6 +299,9 @@ function LeadRow({ lead, t, editingCell, setEditingCell, onInlineEdit, onEdit, o
       <td className="td-company">
         <EditableText leadId={lead.id} field="company" value={lead.company} isEditing={isEditing('company')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
         <div className="td-source">{lead.source}</div>
+      </td>
+      <td className="td-priority">
+        <EditablePriority leadId={lead.id} priority={lead.priority} isEditing={isEditing('priority')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
       </td>
       <td>
         <EditableNiche leadId={lead.id} niche={lead.niche} isEditing={isEditing('niche')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />

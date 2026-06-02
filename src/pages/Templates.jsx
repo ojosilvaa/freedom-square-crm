@@ -66,6 +66,77 @@ Would you be open to a 15-min chat?`,
     ],
   },
   {
+    category: 'Instagram DM — Fitness & Pilates',
+    items: [
+      {
+        title: 'First Contact — Studio',
+        body: `Hi! 👋 I love the energy of [Studio Name].
+
+I help fitness & pilates studios in Porto fill more classes and grow memberships through targeted local ads and content that turns followers into trial bookings.
+
+Would a quick 15-min chat make sense this week?`,
+      },
+    ],
+  },
+  {
+    category: 'Instagram DM — Beauty & Wellness',
+    items: [
+      {
+        title: 'First Contact — Salon / Spa',
+        body: `Hi! Your work at [Name] looks beautiful ✨
+
+I help salons & wellness studios in Porto keep their calendar full through local ads and content that turns followers into bookings.
+
+Would you have 15 minutes for a quick chat this week?`,
+      },
+    ],
+  },
+  {
+    category: 'Instagram DM — Veterinary',
+    items: [
+      {
+        title: 'First Contact — Vet Clinic',
+        body: `Hi! 🐾 I came across [Clinic Name] and love how you care for your patients.
+
+I help veterinary clinics in Porto reach more local pet owners through Google & Meta ads and consistent social content.
+
+Would you be open to a quick call to see if we could help you grow?`,
+      },
+    ],
+  },
+  {
+    category: 'Instagram DM / Email — Wine & Tourism (EN)',
+    items: [
+      {
+        title: 'First Contact — Wine Estate / Experience',
+        body: `Hi! I came across [Name] and your experiences look stunning 🍷
+
+I help wine estates and tourism businesses across the Douro & Porto attract more international visitors through multilingual Meta/Google Ads and SEO — turning followers into booked tastings and stays.
+
+Would you be open to a quick call this week to share a couple of ideas?`,
+      },
+    ],
+  },
+  {
+    category: 'Email — International Schools',
+    items: [
+      {
+        title: 'First Contact — Admissions',
+        body: `Subject: Reaching more international families in Porto
+
+Hi [Name],
+
+I'm Daria from Freedom Square, a Porto marketing agency. We help schools reach relocating and expat families through multilingual SEO and targeted Meta/Google campaigns around admissions season.
+
+Would you be open to a short call to explore supporting [School]'s enrolment goals?
+
+Best,
+Daria
+Freedom Square | freedomsquare.eu`,
+      },
+    ],
+  },
+  {
     category: 'LinkedIn / Email — Tech & SaaS',
     items: [
       {
@@ -302,6 +373,77 @@ Adorava partilhar algumas ideias específicas — uma chamada rápida esta seman
 Ajudo restaurantes no Porto a conseguir mais reservas e afluência através de Meta Ads e conteúdo profissional. Não é preciso um grande orçamento — trabalhamos de forma eficiente.
 
 Estariam abertos a uma conversa de 15 min?`,
+      },
+    ],
+  },
+  {
+    category: 'Instagram DM — Fitness e Pilates',
+    items: [
+      {
+        title: 'Primeiro Contacto — Estúdio',
+        body: `Olá! 👋 Adoro a energia do [Nome do Estúdio].
+
+Ajudo estúdios de fitness e pilates no Porto a encher mais aulas e a aumentar as inscrições através de anúncios locais segmentados e conteúdo que converte seguidores em experimentações.
+
+Faz sentido uma conversa rápida de 15 min esta semana?`,
+      },
+    ],
+  },
+  {
+    category: 'Instagram DM — Beleza e Bem-Estar',
+    items: [
+      {
+        title: 'Primeiro Contacto — Salão / Spa',
+        body: `Olá! O trabalho do [Nome] é lindíssimo ✨
+
+Ajudo salões e estúdios de bem-estar no Porto a manter a agenda cheia através de anúncios locais e conteúdo que transforma seguidores em marcações.
+
+Teria 15 minutos para uma conversa rápida esta semana?`,
+      },
+    ],
+  },
+  {
+    category: 'Instagram DM — Veterinária',
+    items: [
+      {
+        title: 'Primeiro Contacto — Clínica Veterinária',
+        body: `Olá! 🐾 Encontrei a [Nome da Clínica] e adoro o cuidado que têm com os pacientes.
+
+Ajudo clínicas veterinárias no Porto a chegar a mais donos de animais da zona através de anúncios no Google e Meta e conteúdo consistente nas redes.
+
+Estariam abertos a uma chamada rápida para ver se podemos ajudar no crescimento?`,
+      },
+    ],
+  },
+  {
+    category: 'Instagram DM / Email — Enoturismo e Turismo',
+    items: [
+      {
+        title: 'Primeiro Contacto — Quinta / Experiência',
+        body: `Olá! Encontrei a [Nome] e as vossas experiências são deslumbrantes 🍷
+
+Ajudo quintas e negócios de turismo no Douro e Porto a atrair mais visitantes internacionais através de anúncios multilingue (Meta/Google) e SEO — transformando seguidores em provas e estadias reservadas.
+
+Estariam abertos a uma chamada rápida esta semana para partilhar algumas ideias?`,
+      },
+    ],
+  },
+  {
+    category: 'Email — Escolas Internacionais',
+    items: [
+      {
+        title: 'Primeiro Contacto — Admissões',
+        body: `Assunto: Chegar a mais famílias internacionais no Porto
+
+Olá [Nome],
+
+Sou a Daria da Freedom Square, agência de marketing no Porto. Ajudamos escolas a chegar a famílias expatriadas e em mudança para o Porto através de SEO multilingue e campanhas Meta/Google focadas na época de admissões.
+
+Estaria aberto a uma chamada curta para explorar como apoiar os objetivos de inscrições da [Escola]?
+
+Cumprimentos,
+Daria
+Freedom Square | freedomsquare.eu`,
       },
     ],
   },
