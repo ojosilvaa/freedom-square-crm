@@ -1,10 +1,14 @@
 import { useLang } from '../App'
-import { STATUS_COLORS, STATUSES, NICHES } from '../i18n'
+import { STATUS_COLORS, STATUSES, NICHES, NICHE_COLORS } from '../i18n'
 
 export default function Dashboard({ leads }) {
   const { t } = useLang()
 
   const total = leads.length
+  const hot = leads.filter(l => l.priority === 'A').length
+  const toContact = leads.filter(l => l.status === 'To Contact').length
+  const withIg = leads.filter(l => l.instagram && l.instagram.trim()).length
+  const withIgPct = total ? Math.round((withIg / total) * 100) : 0
   const responded = leads.filter(l => ['Replied', 'Meeting Booked', 'Proposal Sent', 'Closed'].includes(l.status)).length
   const closed = leads.filter(l => l.status === 'Closed').length
   const meetings = leads.filter(l => l.status === 'Meeting Booked').length
@@ -20,7 +24,8 @@ export default function Dashboard({ leads }) {
   const nicheCounts = NICHES.map(n => ({
     niche: n,
     count: leads.filter(l => l.niche === n).length,
-  })).filter(n => n.count > 0)
+    colors: NICHE_COLORS[n] || NICHE_COLORS['Other'],
+  })).filter(n => n.count > 0).sort((a, b) => b.count - a.count)
 
   const today = new Date()
   today.setHours(0, 0, 0, 0)
@@ -40,7 +45,8 @@ export default function Dashboard({ leads }) {
     return <span style={{ color: '#6B7280' }}>+{diff}d</span>
   }
 
-  const maxCount = Math.max(...statusCounts.map(s => s.count), 1)
+  const maxStatus = Math.max(...statusCounts.map(s => s.count), 1)
+  const maxNiche = Math.max(...nicheCounts.map(n => n.count), 1)
 
   return (
     <div className="page-container">
@@ -49,9 +55,12 @@ export default function Dashboard({ leads }) {
       {/* KPI cards */}
       <div className="kpi-grid">
         <KpiCard label={t.total_leads} value={total} color="#1F3864" />
-        <KpiCard label={t.response_rate} value={`${responseRate}%`} color="#2E75B6" />
-        <KpiCard label={t.close_rate} value={`${closeRate}%`} color="#16A34A" />
+        <KpiCard label={t.hot_leads} value={hot} color="#DC2626" />
+        <KpiCard label={t.to_contact_kpi} value={toContact} color="#2E75B6" />
+        <KpiCard label={t.with_ig_kpi} value={`${withIgPct}%`} color="#E1306C" />
         <KpiCard label={t.meetings_booked} value={meetings} color="#7C3AED" />
+        <KpiCard label={t.response_rate} value={`${responseRate}%`} color="#0EA5E9" />
+        <KpiCard label={t.close_rate} value={`${closeRate}%`} color="#16A34A" />
       </div>
 
       <div className="dashboard-bottom">
@@ -72,7 +81,7 @@ export default function Dashboard({ leads }) {
                   <div
                     className="funnel-bar"
                     style={{
-                      width: `${(count / maxCount) * 100}%`,
+                      width: `${(count / maxStatus) * 100}%`,
                       background: colors.border,
                       minWidth: count > 0 ? '4px' : '0',
                     }}
@@ -84,39 +93,42 @@ export default function Dashboard({ leads }) {
           </div>
         </div>
 
-        <div className="dashboard-right">
-          {/* By niche */}
-          <div className="card">
-            <h2 className="card-title">{t.by_niche}</h2>
-            <div className="niche-list">
-              {nicheCounts.map(({ niche, count }) => (
-                <div key={niche} className="niche-row">
-                  <span className="niche-name">{niche}</span>
-                  <span className="niche-count">{count}</span>
+        {/* Follow-ups */}
+        <div className="card">
+          <h2 className="card-title">{t.recent_activity}</h2>
+          {upcoming.length === 0 ? (
+            <p className="empty-msg">{t.no_followups}</p>
+          ) : (
+            <div className="followup-list">
+              {upcoming.map(l => (
+                <div key={l.id} className="followup-row">
+                  <div>
+                    <div className="followup-company">{l.company}</div>
+                    <div className="followup-niche">{l.niche}</div>
+                  </div>
+                  <div>{followupLabel(l.next_followup)}</div>
                 </div>
               ))}
             </div>
-          </div>
+          )}
+        </div>
+      </div>
 
-          {/* Follow-ups */}
-          <div className="card">
-            <h2 className="card-title">{t.recent_activity}</h2>
-            {upcoming.length === 0 ? (
-              <p className="empty-msg">{t.no_followups}</p>
-            ) : (
-              <div className="followup-list">
-                {upcoming.map(l => (
-                  <div key={l.id} className="followup-row">
-                    <div>
-                      <div className="followup-company">{l.company}</div>
-                      <div className="followup-niche">{l.niche}</div>
-                    </div>
-                    <div>{followupLabel(l.next_followup)}</div>
-                  </div>
-                ))}
+      {/* By niche — full width */}
+      <div className="card niche-card">
+        <h2 className="card-title">{t.by_niche}</h2>
+        <div className="niche-grid">
+          {nicheCounts.map(({ niche, count, colors }) => (
+            <div key={niche} className="niche-chip" style={{ borderLeft: `4px solid ${colors.border}` }}>
+              <div className="niche-chip-top">
+                <span className="niche-chip-name">{niche}</span>
+                <span className="niche-chip-count" style={{ color: colors.text }}>{count}</span>
               </div>
-            )}
-          </div>
+              <div className="niche-chip-bar-wrap">
+                <div className="niche-chip-bar" style={{ width: `${(count / maxNiche) * 100}%`, background: colors.border }} />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
