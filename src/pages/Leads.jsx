@@ -111,21 +111,20 @@ export default function Leads({ leads, onAdd, onUpdate, onDelete }) {
         <table className="leads-table">
           <thead>
             <tr>
-              <th>{t.col_company}</th>
+              <th className="th-company">{t.col_company}</th>
               <th className="th-priority">{t.col_priority}</th>
-              <th>{t.col_niche}</th>
-              <th>{t.col_instagram}</th>
-              <th>{t.col_status}</th>
-              <th>{t.col_hook}</th>
-              <th>{t.col_last_contact}</th>
-              <th>{t.col_next_followup}</th>
-              <th>{t.col_notes}</th>
-              <th>{t.col_actions}</th>
+              <th className="th-niche">{t.col_niche}</th>
+              <th className="th-ig">{t.col_instagram}</th>
+              <th className="th-status">{t.col_status}</th>
+              <th className="th-hook">{t.col_hook}</th>
+              <th className="th-date">{t.col_last_contact}</th>
+              <th className="th-date">{t.col_next_followup}</th>
+              <th className="th-actions">{t.col_actions}</th>
             </tr>
           </thead>
           <tbody>
             {filtered.length === 0 ? (
-              <tr><td colSpan={10} style={{ textAlign: 'center', padding: '2rem', color: '#9CA3AF' }}>{t.no_leads}</td></tr>
+              <tr><td colSpan={9} style={{ textAlign: 'center', padding: '2rem', color: '#9CA3AF' }}>{t.no_leads}</td></tr>
             ) : filtered.map(lead => (
               <LeadRow
                 key={lead.id}
@@ -319,19 +318,25 @@ function LeadRow({ lead, t, editingCell, setEditingCell, onInlineEdit, onEdit, o
       <td>
         <EditableStatus leadId={lead.id} status={lead.status} isEditing={isEditing('status')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
       </td>
-      <td className="td-hook">
-        <EditableText leadId={lead.id} field="hook" value={lead.hook} multiline isEditing={isEditing('hook')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
+      <td className="td-hook" title={lead.hook || ''}>
+        {isEditing('hook') ? (
+          <EditableText leadId={lead.id} field="hook" value={lead.hook} multiline isEditing={true} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
+        ) : (
+          <span
+            className="hook-text"
+            onClick={() => setEditingCell({ id: lead.id, field: 'hook' })}
+          >
+            {lead.hook || <span style={{ color: '#D1D5DB' }}>—</span>}
+          </span>
+        )}
       </td>
-      <td>
+      <td className="td-date">
         <EditableDate leadId={lead.id} field="last_contact" value={lead.last_contact} isEditing={isEditing('last_contact')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
       </td>
-      <td>
+      <td className="td-date">
         <EditableDate leadId={lead.id} field="next_followup" value={lead.next_followup} isEditing={isEditing('next_followup')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
       </td>
-      <td className="td-notes">
-        <EditableText leadId={lead.id} field="notes" value={lead.notes} multiline isEditing={isEditing('notes')} setEditingCell={setEditingCell} onInlineEdit={onInlineEdit} />
-      </td>
-      <td>
+      <td className="td-actions">
         <div className="action-btns">
           <button className="btn-icon" onClick={onEdit} title={t.edit}>✏️</button>
           <button className="btn-icon btn-icon-danger" onClick={onDelete} title={t.btn_delete}>🗑</button>
